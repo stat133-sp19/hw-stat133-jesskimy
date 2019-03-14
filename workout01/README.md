@@ -7,29 +7,29 @@ There are 5 parts to the homework.
 4. Shot Charts
 5. Report
 
-The structure looks like this:
-workout01/
-  README.md
-  data/
-    andre-iguodala.csv
-    draymond-green.csv
-    kevin-durant.csv
-    klay-thompson.csv
-    stephen-curry.csv
-    shots-data.csv
-    data-dictionary.md
-  code/
-    make-shots-data-script.R
-    make-shot-charts-script.R
-  output/
-    shots-data-summary.txt
-    ... # other summary.txt files
-  images/
-    nba-court.jpg
-    ... # other image files
-  report/
-    workout01-first-last.Rmd
-    workout01-first-last.md
+The structure looks like this:  
+workout01/  
+  README.md  
+  data/  
+    andre-iguodala.csv  
+    draymond-green.csv  
+    kevin-durant.csv  
+    klay-thompson.csv  
+    stephen-curry.csv  
+    shots-data.csv  
+    data-dictionary.md  
+  code/  
+    make-shots-data-script.R  
+    make-shot-charts-script.R  
+  output/  
+    shots-data-summary.txt  
+    ... # other summary.txt files  
+  images/  
+    nba-court.jpg  
+    ... # other image files  
+  report/  
+    workout01-first-last.Rmd  
+    workout01-first-last.md  
     
-Sources: NBA, Basketball Reference, CNBC
+Sources: NBA, Basketball Reference, CNBC  
 Author: Jessica Kim
