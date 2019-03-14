@@ -3,11 +3,16 @@
 #inputs: The inputs we need are code chunks that change some things in columns, add columns, and combine them, etc.
 #outputs: When the script is run, we will get a csv data file "shots-data.csv" that contains the required variables to be used in the visualization phase.
 
-iguodala <- read.csv("Desktop/workout01/data/andre-iguodala.csv", stringsAsFactors = FALSE)
-green <- read.csv("Desktop/workout01/data/draymond-green.csv", stringsAsFactors = FALSE)
-durant <- read.csv("Desktop/workout01/data/kevin-durant.csv", stringsAsFactors = FALSE)
-thompson <- read.csv("Desktop/workout01/data/klay-thompson.csv", stringsAsFactors = FALSE)
-curry <- read.csv("Desktop/workout01/data/stephen-curry.csv", stringsAsFactors = FALSE)
+data_types = c("team_name"="character", "game_date"="character", "season" = "integer", "period"="integer",
+               "minutes_remaining"="integer", "seconds_remaining"="integer", "shot_made_flag"="character",
+               "action_type"="factor", "shot_type"="factor", "shot_distance"="integer", "opponent"="character",
+               "x"="integer", "y"="integer")
+
+iguodala <- read.csv("Desktop/workout01/data/andre-iguodala.csv", stringsAsFactors = FALSE, colClasses = data_types)
+green <- read.csv("Desktop/workout01/data/draymond-green.csv", stringsAsFactors = FALSE, colClasses = data_types)
+durant <- read.csv("Desktop/workout01/data/kevin-durant.csv", stringsAsFactors = FALSE, colClasses = data_types)
+thompson <- read.csv("Desktop/workout01/data/klay-thompson.csv", stringsAsFactors = FALSE, colClasses = data_types)
+curry <- read.csv("Desktop/workout01/data/stephen-curry.csv", stringsAsFactors = FALSE, colClasses = data_types)
 
 iguodala$name <- "Andre Iguodala"
 green$name <- "Draymond Green"
