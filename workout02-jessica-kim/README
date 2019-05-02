@@ -1,0 +1,7 @@
+This Workout02 assignment is for learning Shiny Apps. It involves creating sliders, displaying charts based on a facet option, and displaying a table with savings options.
+There are three modes of saving, and the charts and table show visualizations for them.
+
+There is one part to the assignment.
+1. app.R
+
+Author: Jessica Kim
