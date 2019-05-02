@@ -1,5 +1,6 @@
 library(ggplot2)
 dev.off()
+
 #' @title Combination
 #' @description calculates the number of combinations in which k successes can occur in n trials
 #' @param n numeric, number of trials
