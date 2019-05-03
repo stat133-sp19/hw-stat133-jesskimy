@@ -1,0 +1,101 @@
+---
+title: "Introduction to Binomial"
+author: "Jessica Kim"
+date: "`r Sys.Date()"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(binomial)
+```
+
+## Binomial
+
+The package "binomial" is an implementation for computing different statistics for binomial distributions. This includes the probabilities of success, expected value, variance, mode, skewness, and kurtosis of a binomial distribution. 
+
+## Important Things to Note
+There are some things to keep in mind about the inputs for the functions we are about to explore. 
+For probability, or `prob` to be valid, it has to be a numeric value between 0 and 1, inclusive.
+For `trials` to be valid, it must be a non-negative integer.
+For `success` to be valid, it must be an integer or a vector of integers greater than or equal to 0 and less than or equal to the number of trials.
+If any of the values are invalid, an error message will show up.
+
+## Binomial Functions
+
+## bin_choose()
+We can find the number of combinations for which k successes can happen in n trials. 
+The code below explains the number of combinations possible for 3 (heads) successes in 10 trials (coin tosses).
+```{r}
+bin_choose(10, 3)
+```
+
+## bin_probability()
+The function `bin_probability()` gives us the probability of getting k successes in n trials, given a probability of success (in one trial). The code below would compute the probability of getting 3 (heads) successes in 10 trials (fair coin tosses).
+```{r}
+bin_probability(3, 10, 0.5)
+```
+
+## bin_distribution()
+Next, the `bin_distribution()` function can be used to get the entire distribution. This function returns a data frame with the number of successes in the first column and the probability of the corresponding number of successes in the second column.
+For example, the code below would display the distribution for 0 to 10 (heads) successes in 10 trials (fair coin tosses). 
+```{r}
+bin_distribution(trials = 10, prob = 0.5)
+```
+We can also plot this distribution by calling the method `plot()` after assigning the output of `bin_distribution()` to a variable, as shown below:
+```{r, fig.show='hold'}
+bindis1 <- bin_distribution(10, 0.5)
+plot(bindis1)
+```
+
+## bin_cumulative()
+Building off of the `bin_distribution()` function, `bin_cumulative()` returns the same data frame as from above, but with a third column that has the corresponding cumulative probabilities.
+```{r}
+bin_cumulative(trials = 10, prob = 0.5)
+```
+This can also be plotted with a method `plot()`, using the same format as above.
+```{r, fig.show='hold'}
+bincum1 <- bin_cumulative(10, 0.5)
+plot(bincum1)
+```
+
+## bin_variable()
+This function creates a binomial random variable. 
+```{r}
+bin_variable(trials = 10, prob = 0.5)
+```
+There is a summary function that we can use to access summary statistics of the binomial variable. It gives us the mean, variance, mode, skewness, and kurtosis.
+```{r}
+bin_var <- bin_variable(10, 0.5)
+summary(bin_var)
+```
+
+## Summary Functions
+Finally, we can use individual summary functions to only get the specific descriptive statistics.
+```{r}
+#mean
+bin_mean(trials = 10, prob = 0.5)
+
+#variance
+bin_variance(trials = 10, prob = 0.5)
+
+#mode
+bin_mode(trials = 10, prob = 0.5)
+
+#skewness
+bin_skewness(trials = 10, prob = 0.5)
+
+#kurtosis
+bin_kurtosis(trials = 10, prob = 0.5)
+```
+
