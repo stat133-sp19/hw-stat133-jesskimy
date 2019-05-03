@@ -1,5 +1,5 @@
 library(ggplot2)
-dev.off()
+source("R/private_checker_functions.R")
 
 #' @title Combination
 #' @description calculates the number of combinations in which k successes can occur in n trials
@@ -22,10 +22,6 @@ bin_choose <- function(n, k) {
   }
 }
 
-bin_choose(n = 5, k = 2)
-bin_choose(5, 0)
-bin_choose(5, 1:3)
-
 #' @title Binomial Probability
 #' @description calculates the number of combinations in which k successes can occur in n trials
 #' @param success numeric, number of successes
@@ -39,7 +35,6 @@ bin_choose(5, 1:3)
 #' bin_probability(success = 55, trials = 100, prob = 0.45)
 #'
 #'
-source("R/privatecheckerfunctions.R")
 bin_probability <- function(success, trials, prob) {
   if(check_trials(trials) == TRUE && check_success(success, trials) == TRUE && check_prob(prob) == TRUE) {
     bin_choose(trials, success) * (prob^success) * (1-prob)^(trials - success)
@@ -52,12 +47,6 @@ bin_probability <- function(success, trials, prob) {
   }
 }
 
-bin_probability(success = 2, trials = 5, prob = 0.5)
-bin_probability(success = 0:2, trials = 5, prob = 0.5)
-bin_probability(success = 55, trials = 100, prob = 0.45)
-bin_probability(success = 0:2, trials = -2, prob = 0.5)
-bin_probability(success = 10, trials = 5, prob = 0.5)
-bin_probability(success = 0:2, trials = 5, prob = 1.9)
 
 #' @title Binomial Distribution
 #' @description calculates the probability of success for each of the possible number of successes given the number of trials
@@ -80,15 +69,10 @@ bin_distribution <- function(trials, prob, class = c("bindis", "data.frame")) {
   return(dist_df)
 }
 
-bin_distribution(trials = 5, prob = 0.5)
-
 #' @export
 plot.bindis <- function(dist_df, ...) {
   ggplot(data = dist_df, aes(x = success, y = probs)) + geom_col()
 }
-
-dis1 <- bin_distribution(trials = 5, prob = 0.5)
-plot(dis1)
 
 #' @title Binomial Cumulative Distribution
 #' @description calculates the probability of success for each of the possible number of successes given the number of trials,
@@ -118,15 +102,10 @@ bin_cumulative <- function(trials, prob, class = c("bincum", "data.frame")) {
   return(cum_df)
 }
 
-bin_cumulative(trials = 5, prob = 0.5)
-
 #' @export
 plot.bincum <- function(cum_df, ...) {
   ggplot(data = cum_df, aes(x = success, y = cumulative)) + geom_line() + geom_point()
 }
-
-dis2 <- bin_cumulative(trials = 5, prob = 0.5)
-plot(dis2)
 
 #' @title Binomial Variable
 #' @description gets us a list with named elements (number of trials and probability of success)
@@ -138,7 +117,6 @@ plot(dis2)
 #' bin_variable(trials = 10, prob = 0.3)
 #'
 #'
-source("R/privatecheckerfunctions.R")
 bin_variable <- function(trials, prob, class = "binvar") {
   if(check_trials(trials) != TRUE) {
     stop("invalid trials value")
@@ -159,9 +137,6 @@ print.binvar <- function(x, ...) {
   cat(paste("- number of trials: ", x$trials), "\n")
   cat(paste("- prob of success : ", x$prob), "\n")
 }
-
-bin1 <- bin_variable(trials = 10, p = 0.3)
-bin1
 
 #' @export
 summary.binvar <- function(x, ...) {
@@ -187,10 +162,6 @@ print.summary.binvar <- function(y, ...) {
   cat(paste("- kurtosis: ", y$kurtosis), "\n")
 }
 
-bin1 <- bin_variable(trials = 10, p = 0.3)
-binsum1 <- summary(bin1)
-binsum1
-
 #MAIN FUNCTIONS
 #' @title Binomial Mean
 #' @description computes the expected number of successes in the given number of trials
@@ -206,8 +177,6 @@ bin_mean <- function(trials, prob) {
   return(aux_mean(trials, prob))
 }
 
-bin_mean(10, 0.3)
-
 #' @title Binomial Variance
 #' @description computes the variance of the binomial distribution
 #' @param trials numeric, number of trials
@@ -221,8 +190,6 @@ bin_mean(10, 0.3)
 bin_variance <- function(trials, prob) {
   return(aux_variance(trials, prob))
 }
-
-bin_variance(10, 0.3)
 
 #' @title Binomial Mode
 #' @description computes the most likely number of successes in "trials" independent trials with probaility of success "prob" on each trial
@@ -238,8 +205,6 @@ bin_mode <- function(trials, prob) {
   return(aux_mode(trials, prob))
 }
 
-bin_mode(10, 0.3)
-
 #' @title Binomial Skewness
 #' @description computes the measure of the asymmetry of the probability distribution of a random variable about its mean
 #' @param prob numeric, probability of success
@@ -253,8 +218,6 @@ bin_skewness <- function(trials, prob) {
   return(aux_skewness(trials, prob))
 }
 
-bin_skewness(10, 0.3)
-
 #' @title Binomial Kurtosis
 #' @description computes the measure of the "tailedness" of the probability distribution of a random variable
 #' @param prob numeric, probability of success
@@ -267,5 +230,3 @@ bin_skewness(10, 0.3)
 bin_kurtosis <- function(trials, prob) {
   return(aux_kurtosis(trials, prob))
 }
-
-bin_kurtosis(10, 0.3)

@@ -15,7 +15,7 @@ test_that("bin_probability with valid success, trials, and prob returns the corr
   expect_equal(length(bin_probability(success = 0:2, trials = 5, prob = 0.5)), 3)
   expect_error(bin_probability(success = 0:2, trials = -2, prob = 0.5), "invalid trials value")
   expect_error(bin_probability(success = 10, trials = 5, prob = 0.5), "success cannot be greater than trials")
-  expect_error(bin_probability(success = 0:2, trials = 5, prob = 1.9), "prob has to be a number (of length 1) between 0 and 1")
+  expect_error(bin_probability(success = 0:2, trials = 5, prob = 1.9))
 })
 
 test_that("bin_distribution with valid trials and prob returns a data frame with class bindis and with success in the first column and probability is in the second column",{
@@ -34,7 +34,7 @@ test_that("bin_cumulative with valid trials and prob returns a data frame of cla
 
 test_that("bin_variable with valid trials and prob returns a list of class binvar with trials and prob", {
   expect_s3_class(bin_variable(trials = 5, prob = 0.5), "binvar")
-  expect_is(bin_variable(trials = 5, prob = 0.5), "list")
+  expect_is(bin_variable(trials = 5, prob = 0.5), "binvar")
   expect_error(bin_variable(-10, 0.4), "invalid trials value")
-  expect_error(bin_variable(10, 1.2), "invalid probability value")
+  expect_error(bin_variable(10, 1.2))
 })

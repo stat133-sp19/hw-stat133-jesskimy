@@ -2,6 +2,8 @@
 
 #private auxiliary function check_prob() tests if an input prob is a valid probability
 #i.e. 0 <= p <= 1
+# Input: numeric value prob (probability)
+# Output: logical value TRUE if valid input or an error message if invalid
 check_prob <- function(prob) {
   if(0 <= prob && prob <= 1 && length(prob) == 1) {
     return(TRUE)
@@ -9,13 +11,11 @@ check_prob <- function(prob) {
     stop('prob has to be a number (of length 1) between 0 and 1')
   }
 }
-check_prob(0.6)
-check_prob(1/2)
-check_prob(1.2)
-check_prob(c(1, 1/2))
 
 #private auxiliary function check_trials() tests if an input trials is a valid value for the number of trials
 #trials(n) should be a non-negative integer
+# Input: trials (number of trials)
+# Output: logical value TRUE if valid input or an error message if invalid
 check_trials <- function(trials) {
   if(trials > 0 && trials%%1 == 0) {
     return(TRUE)
@@ -24,13 +24,10 @@ check_trials <- function(trials) {
   }
 }
 
-check_trials(0)
-check_trials(3.5)
-check_trials(500)
-check_trials(-2)
-
 #private auxiliary function check_success() tests if an input success is a valid value for number of successes
 #success(k) should be between 0 and trials(n)
+# Inputs: success (number of successes), trial (number of trials)
+# Output: a logical value TRUE if valid inputs or an error message if invalid
 check_success <- function(success, trials) {
   if(min(success) >= 0 && max(success) <= trials) {
     return(TRUE)
@@ -40,8 +37,3 @@ check_success <- function(success, trials) {
     stop('invalid success value')
   }
 }
-
-check_success(c(10, 5), 20)
-check_success(c(10), 5)
-check_success(c(0), 2)
-
